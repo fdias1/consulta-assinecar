@@ -23,7 +23,8 @@ tabela.forEach((item,index) => db.collection('tabela').doc('/' + index + '/').cr
 */
 
 // create
-app.post('/api/create', (req, res) => {
+
+/*app.post('/api/create', (req, res) => {
     (async () => {
         try {
             await db.collection('tabela').doc('/' + req.body.id + '/')
@@ -36,6 +37,7 @@ app.post('/api/create', (req, res) => {
     })()
 })
 
+*/
 
 // read item
 app.get('/api/read/:item_id', (req, res) => {
@@ -53,17 +55,20 @@ app.get('/api/read/:item_id', (req, res) => {
 });
 
 // read all
+
 app.get('/api/read', (req, res) => {
-    (async () => {
+     (async () => {
         try {
             let query = db.collection('tabela');
             let response = [];
-            await query.get().then(querySnapshot => {
+            await query.get()
+            .then(querySnapshot => {
             let docs = querySnapshot.docs;
             for (let doc of docs) {
                 const selectedItem = doc.data();
                 response.push(selectedItem);
             }
+            return null
             });
             return res.status(200).send(response);
         } catch (error) {
@@ -74,6 +79,7 @@ app.get('/api/read', (req, res) => {
 });
 
 // update
+/*
 app.put('/api/update/:item_id', (req, res) => {
     (async () => {
         try {
@@ -90,6 +96,7 @@ app.put('/api/update/:item_id', (req, res) => {
 });
 
 // delete
+
 app.delete('/api/delete/:item_id', (req, res) => {
     (async () => {
         try {
@@ -102,19 +109,6 @@ app.delete('/api/delete/:item_id', (req, res) => {
         }
     })();
 });
-
-
-app.delete('/api/delete', (req, res) => {
-    (async () => {
-        try {
-            const documents = db.collection('tabela').get();
-            await [...documents].forEach(document => console.log(document))
-            return res.status(200).send();
-        } catch (error) {
-            console.log(error);
-            return res.status(500).send(error);
-        }
-    })();
-});
+*/
 
 exports.app = functions.https.onRequest(app)
