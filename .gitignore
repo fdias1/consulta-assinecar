@@ -67,3 +67,4 @@ node_modules/
 # Sensible data
 chave.json
 tabela.json
+/tabelas
