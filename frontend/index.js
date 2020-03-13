@@ -6,9 +6,10 @@ document.getElementById("button").onclick = event => {
     conteudo = document.getElementById('conteudo')
     lista=""
     event.preventDefault()
+    conteudo.innerHTML = `<img src="./load.gif"></img>`
     fetch(apiAddress)
     .then(resp => resp.json())
-    .then(obj => [...obj].slice(1))
+    .then(obj => [...obj])
     .then(carros => carros.filter(carro => carro.modelo.toUpperCase().includes(pesquisa)))
     .then(carros => carros.sort((c1,c2) => c1.modelo.localeCompare(c2.modelo)))
     .then(carros => {
