@@ -18,7 +18,7 @@ app.use(cors({ origin: true }))
 
 //mass upload
 /*
-tabela = require("./tabela.json")
+tabela = require("./tabela-marco.json")
 tabela.forEach((item,index) => db.collection('tabela').doc('/' + index + '/').create(item))
 */
 
